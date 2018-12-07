@@ -2,32 +2,39 @@ package com.qa.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.qa.constants.TraineeConstants;
 import com.qa.domain.CV;
 import com.qa.domain.Trainee;
 
+@Service
+@Primary
 public class CVServiceLocal implements ICVService {
 
 	private List<Trainee> traineeList = new ArrayList();
 
 	private Trainee trainee;
+	
+	private CV cv;
 
 	public ResponseEntity<?> uploadFile(MultipartFile cvDoc, Long traineeID) {
-		CV cv = putFileIntoCVObject(cvDoc);
+		cv = putFileIntoCVObject(cvDoc);
 		trainee = traineeWithID(traineeID);
-		trainee.setCvList(updateCVList(cv, traineeID));
+		trainee.setCvList(updateCVList(Optional.of(cv), traineeID));
 		traineeList.remove(findTraineeByID(traineeID));
 		traineeList.add(trainee);
 		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSEENTITY_MESSAGE, HttpStatus.OK);
 	}
 
 	public CV putFileIntoCVObject(MultipartFile cvDoc) {
-		CV cv = new CV();
+		cv = new CV();
 		cv.setFiles(cvDoc);
 		return cv;
 	}
@@ -37,10 +44,10 @@ public class CVServiceLocal implements ICVService {
 		return trainee;
 	}
 
-	public List<CV> updateCVList(CV cv, Long traineeID) {
-		List<CV> CVList = new ArrayList<CV>();
+	public List<Optional<CV>> updateCVList(Optional<CV> cv2, Long traineeID) {
+		List<Optional<CV>> CVList = new ArrayList<Optional<CV>>();
 		CVList = traineeWithID(traineeID).getCvList();
-		CVList.add(cv);
+		CVList.add(cv2);
 		return CVList;
 
 	}
@@ -62,7 +69,7 @@ public class CVServiceLocal implements ICVService {
 
 	}
 
-	public List<CV> getCV(Long traineeID) {
+	public List<Optional<CV>> getCV(Long traineeID) {
 		return findTraineeByID(traineeID).getCvList();
 	}
 

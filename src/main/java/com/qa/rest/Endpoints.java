@@ -1,6 +1,7 @@
 package com.qa.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class Endpoints {
 	}
 	
 	@GetMapping("${get_cv_endpoint}")
-	public List<CV> getCV(@PathVariable("traineeID") Long traineeID) {
+	public List<Optional<CV>> getCV(@PathVariable("traineeID") Long traineeID) {
 		return services.getCV(traineeID);
 	}
 	

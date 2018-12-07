@@ -1,9 +1,11 @@
 package com.qa.domain;
 
 
+import java.io.Serializable;
+
 import org.springframework.web.multipart.MultipartFile;
 
-public class CV {
+public class CV implements Serializable{
 	
 	private Long cvID;
 	private MultipartFile files;

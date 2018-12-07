@@ -1,11 +1,13 @@
 package com.qa.domain;
 
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 
 
-public class Trainee {
+public class Trainee implements Serializable{
 	
 	private Long ID;
 	private String userName;
@@ -13,7 +15,7 @@ public class Trainee {
 	private String lastName;
 	private boolean currentlyHired;
 	private boolean flagged;
-	private List<CV> cvList;
+	private List<Optional<CV>> cvList;
 	
 	public Trainee() {
 		
@@ -50,7 +52,7 @@ public class Trainee {
 		return this;
 	}
 	
-	public Trainee inputCVs(List<CV> cvList) {
+	public Trainee inputCVs(List<Optional<CV>> cvList) {
 		this.cvList=cvList;
 		return this;
 	}
@@ -98,11 +100,11 @@ public class Trainee {
 		this.ID = ID;
 	}
 
-	public List<CV> getCvList() {
+	public List<Optional<CV>> getCvList() {
 		return cvList;
 	}
 
-	public void setCvList(List<CV> cvList) {
+	public void setCvList(List<Optional<CV>> cvList) {
 		this.cvList = cvList;
 	}
 
