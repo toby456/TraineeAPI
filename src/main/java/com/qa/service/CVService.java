@@ -39,14 +39,14 @@ public class CVService implements ICVService {
 
 	public ResponseEntity<?> multiUploadFileModel(MultipartFile cvDoc, Long traineeID) {
 		logger.debug("Multiple file upload! With UploadModel");
-		CV cv = putFileintoCVObject(cvDoc);
+		CV cv = putFileIntoCVObject(cvDoc);
 		trainee = traineeWithID(traineeID);
 		trainee.setCvList(makeCVList(cv, traineeID));
 		template.convertAndSend("CVQueue",trainee);
 		return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
 	}
 
-	public CV putFileintoCVObject(MultipartFile cvDoc) {
+	public CV putFileIntoCVObject(MultipartFile cvDoc) {
 		CV cv = new CV();
 		cv.setFiles(cvDoc);
 		return cv;

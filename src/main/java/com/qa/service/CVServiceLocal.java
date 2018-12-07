@@ -16,11 +16,13 @@ public class CVServiceLocal {
 	
 	private Trainee trainee;
 	
-	public ResponseEntity<?> multiUploadFileModel(MultipartFile cvDoc, Long traineeID) {
+	public String multiUploadFileModel(MultipartFile cvDoc, Long traineeID) {
 		CV cv = putFileintoCVObject(cvDoc);
 		trainee = traineeWithID(traineeID);
 		trainee.setCvList(updateCVList(cv, traineeID));
-		return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
+		traineeList.remove(findTraineeByID(traineeID));
+		traineeList.add(trainee);
+		return "Successfully uploaded!";
 	}
 	
 	public CV putFileintoCVObject(MultipartFile cvDoc) {
@@ -61,8 +63,7 @@ public class CVServiceLocal {
 	}
 	
 	public List<CV> getCV(Long traineeID) {
-		trainee = traineeWithID(traineeID);
-		return trainee.getCvList();
+		return findTraineeByID(traineeID).getCvList();
 	}
 
 }
