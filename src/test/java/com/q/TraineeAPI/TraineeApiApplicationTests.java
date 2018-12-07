@@ -1,4 +1,4 @@
-package com.qa.TraineeAPI;
+package com.q.TraineeAPI;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
