@@ -11,15 +11,15 @@ import com.qa.domain.Trainee;
 
 public interface ICVService {
 
-	ResponseEntity<?> multiUploadFileModel(MultipartFile cvDoc, Long traineeID);
+	ResponseEntity<?> uploadFile(MultipartFile cvDoc, Long traineeID);
 	
 	List<CV> getCV(Long traineeID);
 	
 	Trainee createTrainee(Trainee trainee);
 	
-	List<CV> makeCVList(CV cv, Long traineeID);
+	List<CV> updateCVList(CV cv, Long traineeID);
 	
-	Trainee traineewithID(Long traineeID);
+	Trainee traineeWithID(Long traineeID);
 	
 	Trainee findTraineeByID(Long traineeID);
 	

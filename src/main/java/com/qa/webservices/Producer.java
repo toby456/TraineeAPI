@@ -5,7 +5,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.constants.Constants;
+import com.qa.constants.TraineeConstants;
 
 @RestController
 @CrossOrigin
@@ -17,7 +17,7 @@ public class Producer implements IProducer {
 	public String askForTrainees() {
 		String get="get";
 		jmsTemplate.convertAndSend("TrainingManagerGetCVQueue",get);
-		return Constants.QUEUE_MESSAGE;
+		return TraineeConstants.QUEUE_MESSAGE;
 		}
 	
 	

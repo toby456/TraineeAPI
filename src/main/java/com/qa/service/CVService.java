@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.qa.constants.TraineeConstants;
 import com.qa.domain.CV;
 import com.qa.domain.Trainee;
 import com.qa.rest.Endpoints;
@@ -34,16 +35,16 @@ public class CVService implements ICVService {
 
 	@Autowired
 	private IConsumer consumer;
-	
+
 	private Trainee trainee;
 
-	public ResponseEntity<?> multiUploadFileModel(MultipartFile cvDoc, Long traineeID) {
+	public ResponseEntity<?> uploadFile(MultipartFile cvDoc, Long traineeID) {
 		logger.debug("Multiple file upload! With UploadModel");
 		CV cv = putFileIntoCVObject(cvDoc);
 		trainee = traineeWithID(traineeID);
-		trainee.setCvList(makeCVList(cv, traineeID));
-		template.convertAndSend("CVQueue",trainee);
-		return new ResponseEntity("Successfully uploaded!", HttpStatus.OK);
+		trainee.setCvList(updateCVList(cv, traineeID));
+		template.convertAndSend(TraineeConstants.QUEUE_NAME, trainee);
+		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSEENTITY_MESSAGE, HttpStatus.OK);
 	}
 
 	public CV putFileIntoCVObject(MultipartFile cvDoc) {
@@ -75,20 +76,21 @@ public class CVService implements ICVService {
 		return trainee;
 	}
 
-	public List<CV> makeCVList(CV cv,Long traineeID) {
+	public List<CV> updateCVList(CV cv, Long traineeID) {
 		List<CV> CVList = new ArrayList<CV>();
 		CVList = traineeWithID(traineeID).getCvList();
 		CVList.add(cv);
 		return CVList;
 
 	}
-	
+
 	public Trainee createTrainee(Trainee trainee) {
 		return trainee;
 	}
-	
+
 	public List<CV> getCV(Long traineeID) {
 		trainee = traineeWithID(traineeID);
 		return trainee.getCvList();
 	}
+
 }
