@@ -43,7 +43,7 @@ public class CVService implements ICVService {
 		//trainee = traineeWithID(traineeID);
 		//trainee.setCvList(updateCVList(cv, traineeID));
 		template.convertAndSend(TraineeConstants.QUEUE_NAME, trainee);
-		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSEENTITY_MESSAGE, HttpStatus.OK);
+		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSE_ENTITY_MESSAGE, HttpStatus.OK);
 	}
 
 	public CV putFileIntoCVObject(MultipartFile cvDoc) {

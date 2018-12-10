@@ -18,10 +18,10 @@ import com.qa.domain.Trainee;
 @Primary
 public class CVServiceLocal implements ICVService {
 
-	private List<Trainee> traineeList = new ArrayList();
+	private List<Trainee> traineeList = new ArrayList<Trainee>();
 
 	private Trainee trainee;
-	
+
 	private CV cv;
 
 	public ResponseEntity<?> uploadFile(MultipartFile cvDoc, Long traineeID) {
@@ -30,7 +30,7 @@ public class CVServiceLocal implements ICVService {
 		trainee.setCvList(updateCVList(Optional.of(cv), traineeID));
 		traineeList.remove(findTraineeByID(traineeID));
 		traineeList.add(trainee);
-		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSEENTITY_MESSAGE, HttpStatus.OK);
+		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSE_ENTITY_MESSAGE, HttpStatus.OK);
 	}
 
 	public CV putFileIntoCVObject(MultipartFile cvDoc) {
@@ -44,10 +44,13 @@ public class CVServiceLocal implements ICVService {
 		return trainee;
 	}
 
-	public List<Optional<CV>> updateCVList(Optional<CV> cv2, Long traineeID) {
+	public List<Optional<CV>> updateCVList(Optional<CV> cv, Long traineeID) {
 		List<Optional<CV>> CVList = new ArrayList<Optional<CV>>();
-		CVList = traineeWithID(traineeID).getCvList();
-		CVList.add(cv2);
+		if (traineeWithID(traineeID).getCvList() != null) {
+			CVList.add(cv);
+		}
+		CVList.add(cv);
+		System.out.println(CVList);
 		return CVList;
 
 	}

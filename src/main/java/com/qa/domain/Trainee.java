@@ -15,7 +15,7 @@ public class Trainee implements Serializable{
 	private String lastName;
 	private boolean currentlyHired;
 	private boolean flagged;
-	private List<Optional<CV>> cvList;
+	private List<Optional<CV>>cvList;
 	
 	public Trainee() {
 		
