@@ -36,12 +36,14 @@ public class CVService implements ICVService {
 	private IConsumer consumer;
 
 	private Trainee trainee;
+	
+	private CV cv;
 
 	public ResponseEntity<?> uploadFile(MultipartFile cvDoc, Long traineeID) {
 		logger.debug("Multiple file upload! With UploadModel");
-		CV cv = putFileIntoCVObject(cvDoc);
-		//trainee = traineeWithID(traineeID);
-		//trainee.setCvList(updateCVList(cv, traineeID));
+		cv = putFileIntoCVObject(cvDoc);
+		trainee = traineeWithID(traineeID);
+		trainee.setCvList(updateCVList(Optional.of(cv), traineeID));
 		template.convertAndSend(TraineeConstants.QUEUE_NAME, trainee);
 		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSE_ENTITY_MESSAGE, HttpStatus.OK);
 	}
@@ -54,7 +56,8 @@ public class CVService implements ICVService {
 
 	public List<Trainee> getAllTrainees() {
 		producer.askForTrainees();
-		return (List<Trainee>) consumer.getListOfTrainees();
+		List<Trainee> listTrainee=consumer.getListOfTrainees();
+		return listTrainee;
 
 	}
 
@@ -77,10 +80,11 @@ public class CVService implements ICVService {
 
 	public List<Optional<CV>> updateCVList(Optional<CV> cv, Long traineeID) {
 		List<Optional<CV>> CVList = new ArrayList<Optional<CV>>();
-		CVList = traineeWithID(traineeID).getCvList();
+		if (traineeWithID(traineeID).getCvList() != null) {
+			CVList.add(cv);
+		}
 		CVList.add(cv);
 		return CVList;
-
 	}
 
 	public Trainee createTrainee(Trainee trainee) {

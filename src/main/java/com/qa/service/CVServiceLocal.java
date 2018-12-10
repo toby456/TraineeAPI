@@ -50,7 +50,6 @@ public class CVServiceLocal implements ICVService {
 			CVList.add(cv);
 		}
 		CVList.add(cv);
-		System.out.println(CVList);
 		return CVList;
 
 	}
