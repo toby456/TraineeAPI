@@ -31,7 +31,7 @@ public class CVLocalEndpoints {
 
 	
 	@RequestMapping(value="${local_upload_endpoint}",method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile cvDoc, @PathVariable("id") Long traineeID ) {
+	public String uploadFile(@RequestParam("file") MultipartFile cvDoc, @PathVariable("id") Long traineeID ) {
 		return service.uploadFile(cvDoc, traineeID);
 	}
 

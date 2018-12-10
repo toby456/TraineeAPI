@@ -24,13 +24,13 @@ public class CVServiceLocal implements ICVService {
 
 	private CV cv;
 
-	public ResponseEntity<?> uploadFile(MultipartFile cvDoc, Long traineeID) {
+	public String uploadFile(MultipartFile cvDoc, Long traineeID) {
 		cv = putFileIntoCVObject(cvDoc);
 		trainee = traineeWithID(traineeID);
 		trainee.setCvList(updateCVList(Optional.of(cv), traineeID));
 		traineeList.remove(findTraineeByID(traineeID));
 		traineeList.add(trainee);
-		return new ResponseEntity(TraineeConstants.SERVICE_RESPONSE_ENTITY_MESSAGE, HttpStatus.OK);
+		return TraineeConstants.SERVICE_FILE_UPLOAD_MESSAGE;
 	}
 
 	public CV putFileIntoCVObject(MultipartFile cvDoc) {

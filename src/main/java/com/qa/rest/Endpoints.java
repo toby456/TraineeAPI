@@ -32,7 +32,7 @@ public class Endpoints {
 	private CVService services;
 
 	@PostMapping("${upload_endpoint}")
-	public ResponseEntity<?> multiUploadFileModel(@RequestParam("cvDoc") MultipartFile cvDoc, @PathVariable Long traineeID) {
+	public String multiUploadFileModel(@RequestParam("cvDoc") MultipartFile cvDoc, @PathVariable Long traineeID) {
 		return service.uploadFile(cvDoc, traineeID);
 
 	}

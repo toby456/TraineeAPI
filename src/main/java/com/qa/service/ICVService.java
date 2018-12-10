@@ -11,7 +11,7 @@ import com.qa.domain.Trainee;
 
 public interface ICVService {
 
-	ResponseEntity<?> uploadFile(MultipartFile cvDoc, Long traineeID);
+	String uploadFile(MultipartFile cvDoc, Long traineeID);
 	
 	List<Optional<CV>> getCV(Long traineeID);
 	

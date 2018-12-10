@@ -1,5 +1,7 @@
 package com.qa.testConstants;
 
+import org.springframework.http.ResponseEntity;
+
 public class Constants {
 	
 	public static final String MOCK_CV_OBJECT = "{\"id\":\"1\", \"files\":\"file\"}";
