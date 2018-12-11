@@ -12,10 +12,10 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mock.web.MockMultipartFile;
 
-import com.qa.domain.CV;
-import com.qa.domain.Trainee;
-import com.qa.rest.CVLocalEndpoints;
-import com.qa.service.CVServiceLocal;
+import com.qa.TraineeAPI.persistence.domain.CV;
+import com.qa.TraineeAPI.persistence.domain.Trainee;
+import com.qa.TraineeAPI.rest.CVLocalEndpoints;
+import com.qa.TraineeAPI.service.CVServiceLocal;
 import com.qa.testConstants.Constants;
 
 import junit.framework.Assert;

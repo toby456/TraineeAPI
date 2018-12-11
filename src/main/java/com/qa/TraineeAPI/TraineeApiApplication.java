@@ -1,4 +1,4 @@
-package com.qa;
+package com.qa.TraineeAPI;
 
 import javax.jms.ConnectionFactory;
 

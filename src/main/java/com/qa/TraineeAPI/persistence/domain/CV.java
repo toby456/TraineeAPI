@@ -1,24 +1,18 @@
-package com.qa.domain;
-
-
-import java.io.Serializable;
+package com.qa.TraineeAPI.persistence.domain;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class CV implements Serializable{
-	
+public class CV {
+
 	private Long cvID;
-	private MultipartFile files;
-	
-	
-	public CV(Long cvID, MultipartFile files) {
-		this.cvID= cvID;
-		this.files= files;
-		
+	private MultipartFile file;
+
+	public CV(Long cvID, MultipartFile file) {
+		this.cvID = cvID;
+		this.file = file;
 	}
 
 	public CV() {
-		
 	}
 
 	public Long getCvID() {
@@ -27,18 +21,14 @@ public class CV implements Serializable{
 
 	public void setCvID(Long cvID) {
 		this.cvID = cvID;
-	
 	}
 
 	public MultipartFile getFiles() {
-		return files;
+		return file;
 	}
 
 	public void setFiles(MultipartFile cvDoc) {
-		this.files = cvDoc;
+		this.file = cvDoc;
 	}
-	
-	
-	
 
 }

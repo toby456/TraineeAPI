@@ -17,10 +17,10 @@ import com.qa.testConstants.Constants;
 
 import junit.framework.Assert;
 
-import com.qa.domain.CV;
-import com.qa.domain.Trainee;
-import com.qa.rest.Endpoints;
-import com.qa.service.CVService;
+import com.qa.TraineeAPI.persistence.domain.CV;
+import com.qa.TraineeAPI.persistence.domain.Trainee;
+import com.qa.TraineeAPI.rest.Endpoints;
+import com.qa.TraineeAPI.service.CVService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CVEndpointsTests {
