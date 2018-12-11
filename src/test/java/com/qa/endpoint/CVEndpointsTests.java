@@ -38,9 +38,9 @@ public class CVEndpointsTests {
 		Trainee trainee = new Trainee();
 		trainee.setID(1L);
 		Mockito.when(service.uploadFile(mockMultipartFile, 1L)).thenReturn(Constants.SERVICE_RESPONSE_ENTITY_MESSAGE);
-		Assert.assertEquals(Constants.SERVICE_RESPONSE_ENTITY_MESSAGE, endpoints.multiUploadFileModel(mockMultipartFile, trainee.getID()));
+		Assert.assertEquals(Constants.SERVICE_RESPONSE_ENTITY_MESSAGE, endpoints.uploadFile(mockMultipartFile, trainee.getID()));
 	}
-	
+	 
 	@Test
 	public void testCreateTrainee() {
 		Trainee trainee = new Trainee();

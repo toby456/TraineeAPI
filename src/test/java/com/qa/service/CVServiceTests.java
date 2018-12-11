@@ -59,11 +59,11 @@ public class CVServiceTests {
 	public void testFindTraineeByID() {
 		Trainee trainee = new Trainee();
 		List<Trainee> traineeList= new ArrayList<Trainee>();
-		trainee.setFirstName("Toby");
-		trainee.setLastName("Toby");
+		trainee.setFirstName(Constants.MOCK_TRAINEE_NAME);
+		trainee.setLastName(Constants.MOCK_TRAINEE_NAME);
 		trainee.setCurrentlyHired(true);
 		trainee.setFlagged(true);
-		trainee.setUserName("Toby");
+		trainee.setUserName(Constants.MOCK_TRAINEE_NAME);
 		trainee.setID(1L);
 		trainee.setCvList(null);
 		traineeList.add(trainee);
@@ -101,11 +101,11 @@ public class CVServiceTests {
 	public void testTraineeWithID() {
 		Trainee trainee = new Trainee();
 		List<Trainee> traineeList= new ArrayList<Trainee>();
-		trainee.setFirstName("Toby");
-		trainee.setLastName("Toby");
+		trainee.setFirstName(Constants.MOCK_TRAINEE_NAME);
+		trainee.setLastName(Constants.MOCK_TRAINEE_NAME);
 		trainee.setCurrentlyHired(true);
 		trainee.setFlagged(true);
-		trainee.setUserName("Toby");
+		trainee.setUserName(Constants.MOCK_TRAINEE_NAME);
 		trainee.setID(1L);
 		trainee.setCvList(null);
 		traineeList.add(trainee);
@@ -147,8 +147,8 @@ public class CVServiceTests {
 		Mockito.when(consumer.getListOfTrainees()).thenReturn(listTrainees);
 		Trainee mockTrainee = new Trainee();
 		Trainee otherTrainee = new Trainee();
-		mockTrainee.setUserName("user");
-		otherTrainee.setUserName("user2");	
+		mockTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME);
+		otherTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME_TWO);	
 		mockTrainee.setID(service.generateUniqueID());
 		Assert.assertEquals(Long.valueOf(1), mockTrainee.getID());
 		listTrainees.add(mockTrainee);
@@ -163,9 +163,9 @@ public class CVServiceTests {
 		Trainee mockTrainee = new Trainee();
 		Trainee otherTrainee = new Trainee();
 		Trainee nextTrainee = new Trainee();
-		mockTrainee.setUserName("user");
-		otherTrainee.setUserName("user2");
-		nextTrainee.setUserName("user3");
+		mockTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME);
+		otherTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME_TWO);
+		nextTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME_THREE);
 		mockTrainee.setID(service.generateUniqueID());
 		Assert.assertEquals(Long.valueOf(1), mockTrainee.getID());
 		listTrainees.add(mockTrainee);
@@ -183,9 +183,9 @@ public class CVServiceTests {
 		Trainee mockTrainee = new Trainee();
 		Trainee otherTrainee = new Trainee();
 		Trainee nextTrainee = new Trainee();
-		mockTrainee.setUserName("user");
-		otherTrainee.setUserName("user2");
-		nextTrainee.setUserName("user3");
+		mockTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME);
+		otherTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME_TWO);
+		nextTrainee.setUserName(Constants.MOCK_TRAINEE_USERNAME_THREE);
 		mockTrainee.setID(service.generateUniqueID());
 		Assert.assertEquals(Long.valueOf(1), mockTrainee.getID());
 		listTrainees.add(mockTrainee);

@@ -13,6 +13,8 @@ import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.qa.constants.TraineeConstants;
+
 @SpringBootApplication
 public class TraineeApiApplication {
 
@@ -32,15 +34,9 @@ public class TraineeApiApplication {
 	public MessageConverter jacksonJmsMessageConverter() {
 		MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
 		converter.setTargetType(MessageType.TEXT);
-		converter.setTypeIdPropertyName("_type");
+		converter.setTypeIdPropertyName(TraineeConstants.JMS_PROPERTY_NAME);
 		return converter;
 	}
 	
-	@Bean(name = "multipartResolver")
-	public CommonsMultipartResolver multipartResolver() {
-	    CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-	    multipartResolver.setMaxUploadSize(100000);
-	    return multipartResolver;
-	}
 	
 }

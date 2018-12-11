@@ -25,4 +25,14 @@ public class Constants {
 	public static final String QUEUE_NAME = "CVQueue";
 	
 	public static final String SERVICE_RESPONSE_ENTITY_MESSAGE = "Successfully Uploaded";
+	
+	public static final String MOCK_TRAINEE_NAME = "Toby";
+	
+	public static final String MOCK_TRAINEE_USERNAME = "user";
+	
+	public static final String MOCK_TRAINEE_USERNAME_TWO = "user2";
+
+	public static final String MOCK_TRAINEE_USERNAME_THREE = "user3";
+
+	
 	}

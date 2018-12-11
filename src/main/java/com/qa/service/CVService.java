@@ -40,7 +40,7 @@ public class CVService implements ICVService {
 	private CV cv;
 
 	public String uploadFile(MultipartFile cvDoc, Long traineeID) {
-		logger.debug("Multiple file upload! With UploadModel");
+		logger.debug(TraineeConstants.LOGGER_DEBUG_MESSAGE);
 		cv = putFileIntoCVObject(cvDoc);
 		trainee = traineeWithID(traineeID);
 		trainee.setCvList(updateCVList(Optional.of(cv), traineeID));
@@ -84,12 +84,13 @@ public class CVService implements ICVService {
 			CVList.add(cv);
 		}
 		CVList.add(cv);
-		return CVList;
+		return CVList; 
 	}
 
 	public Trainee createTrainee(Trainee trainee) {
 		trainee.setID(generateUniqueID());
-		return trainee;
+		trainee.setRole(TraineeConstants.SET_TRAINEE_ROLE);
+		return trainee; 
 	}
 
 	public List<Optional<CV>> getCV(Long traineeID) {

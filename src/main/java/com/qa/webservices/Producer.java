@@ -15,8 +15,7 @@ public class Producer implements IProducer {
 	private JmsTemplate jmsTemplate;
 		
 	public String askForTrainees() {
-		String get="get";
-		jmsTemplate.convertAndSend("TrainingManagerGetCVQueue",get);
+		jmsTemplate.convertAndSend(TraineeConstants.TRAINING_MANAGER_QUEUE,TraineeConstants.GET);
 		return TraineeConstants.QUEUE_MESSAGE;
 		}
 	

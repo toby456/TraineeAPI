@@ -14,6 +14,7 @@ public class Trainee implements Serializable{
 	private String firstName;
 	private String lastName;
 	private String password;
+	private String role;
 	private boolean currentlyHired;
 	private boolean flagged;
 	private List<Optional<CV>>cvList;
@@ -55,6 +56,11 @@ public class Trainee implements Serializable{
 	
 	public Trainee inputCVs(List<Optional<CV>> cvList) {
 		this.cvList=cvList;
+		return this;
+	}
+	
+	public Trainee inputRole(String role) {
+		this.role=role;
 		return this;
 	}
 	
@@ -125,6 +131,16 @@ public class Trainee implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

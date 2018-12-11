@@ -19,8 +19,9 @@ import com.qa.domain.CV;
 import com.qa.domain.Trainee;
 import com.qa.service.CVService;
 import com.qa.service.ICVService;
+import com.qa.constants.TraineeConstants;
 
-@RequestMapping("${base_endpoint}")
+@RequestMapping(TraineeConstants.BASE_ENDPOINT)
 @CrossOrigin
 @RestController
 public class Endpoints {
@@ -31,19 +32,19 @@ public class Endpoints {
 	@Autowired
 	private CVService services;
 
-	@PostMapping("${upload_endpoint}")
-	public String multiUploadFileModel(@RequestParam("cvDoc") MultipartFile cvDoc, @PathVariable Long traineeID) {
+	@PostMapping(TraineeConstants.UPLOAD_ENDPOINT)
+	public String uploadFile(@RequestParam(TraineeConstants.CV_DOC) MultipartFile cvDoc, @PathVariable Long traineeID) {
 		return service.uploadFile(cvDoc, traineeID);
 
 	}
 
-	@PostMapping("${create_trainee_endpoint}")
+	@PostMapping(TraineeConstants.CREATE_TRAINEE_ENDPOINT)
 	public Trainee createTrainee(@RequestBody Trainee trainee) {
 		return services.createTrainee(trainee);
 	}
 	
-	@GetMapping("${get_cv_endpoint}")
-	public List<Optional<CV>> getCV(@PathVariable("traineeID") Long traineeID) {
+	@GetMapping(TraineeConstants.GET_CV_ENDPOINT)
+	public List<Optional<CV>> getCV(@PathVariable(TraineeConstants.TRAINEE_ID) Long traineeID) {
 		return services.getCV(traineeID);
 	}
 	
