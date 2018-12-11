@@ -48,7 +48,6 @@ public class TraineeService implements ITraineeService {
 		thisRequest.setUserToAddOrUpdate(dummyUser);
 		producer.produce(thisRequest);
 		return Constants.REQUEST_QUEUED_MESSAGE;
-
 	}
 
 	public String update(String userName, Trainee updatedTrainee) {
