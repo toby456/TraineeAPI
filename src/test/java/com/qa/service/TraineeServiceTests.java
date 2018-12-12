@@ -24,7 +24,7 @@ import com.qa.testConstants.TestConstants;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class ServiceTests {
+public class TraineeServiceTests {
 	
 	@InjectMocks
 	private TraineeService service;
@@ -39,9 +39,8 @@ public class ServiceTests {
 	@Test
 	public void testGet() {
 	UserRequest thisRequest = new UserRequest();
-	User dummyUser = new Trainee(TestConstants.USERNAME);
-	Mockito.when(producer.produce(thisRequest)).thenReturn(TestConstants.REQUEST_QUEUED_MESSAGE); 
-	Mockito.when(jmsTemplate.receiveAndConvert(TestConstants.OUTGOING_TRAINEE_QUEUE_NAME)).thenReturn(dummyUser);
+	Trainee dummyUser = new Trainee(TestConstants.USERNAME); 
+	Mockito.when(jmsTemplate.receiveAndConvert(TestConstants.OUTGOING_TRAINEE_QUEUE_NAME)).thenReturn(Optional.of(dummyUser));
 	Assert.assertEquals(Optional.of(dummyUser), service.get(TestConstants.USERNAME));
 	}
 	
@@ -59,7 +58,25 @@ public class ServiceTests {
 	
 	@Test
 	public void testDelete() {
-		
+		UserRequest thisRequest = new UserRequest();
+		User dummyUser = new Trainee(TestConstants.USERNAME);
+		thisRequest.setHowToAct(requestType.DELETE);
+		thisRequest.setUserToAddOrUpdate(dummyUser);
+		Mockito.when(producer.produce(thisRequest)).thenReturn(TestConstants.REQUEST_QUEUED_MESSAGE);
+		Assert.assertEquals(TestConstants.REQUEST_QUEUED_MESSAGE, service.delete(dummyUser.getUsername()));
+	}
+	
+	@Test
+	public void testUpdate() {
+		UserRequest thisRequest = new UserRequest();
+		Trainee updatedTrainee = new Trainee(TestConstants.USERNAME);
+		Trainee dummyUser = new Trainee(TestConstants.USERNAME);
+		dummyUser = updatedTrainee;
+		dummyUser.setUsername(updatedTrainee.getUsername());
+		thisRequest.setHowToAct(requestType.UPDATE);
+		thisRequest.setUserToAddOrUpdate(dummyUser);
+		Mockito.when(producer.produce(thisRequest)).thenReturn(TestConstants.REQUEST_QUEUED_MESSAGE);
+		Assert.assertEquals(TestConstants.REQUEST_QUEUED_MESSAGE, service.update(dummyUser.getUsername(), updatedTrainee));
 	}
 	
 	
