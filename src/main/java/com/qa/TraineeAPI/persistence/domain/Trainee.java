@@ -2,7 +2,7 @@ package com.qa.TraineeAPI.persistence.domain;
 
 import java.util.List;
 
-import org.springframework.data.annotation.
+import org.springframework.data.annotation.TypeAlias;
 
 @TypeAlias("Trainee")
 public class Trainee extends User {
